@@ -1,0 +1,6 @@
+---
+title: "Resume"
+author: "Tian Li"
+---
+
+<img src="images/CV_new.jpg" style="width:75%">

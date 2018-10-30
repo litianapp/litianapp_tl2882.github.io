@@ -1,0 +1,11 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:<tl2882@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: https://github.com/litianapp/litianapp_tl2882.github.io
+output:
+  html_document

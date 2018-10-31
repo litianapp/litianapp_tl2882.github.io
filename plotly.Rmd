@@ -23,5 +23,24 @@ weather =
 
 ```
 
+```{r scatterplots}
+weather %>%
+  plot_ly(x = ~tmin, y = ~tmax, 
+          type = "scatter", mode = "markers", 
+          alpha = 0.5, color = ~name)
+```
 
+```{r boxplot}
+weather %>%
+  plot_ly(y = ~prcp, color = ~name, 
+          type = "box", colors = "Set2")
+```
+
+```{r barplot}
+weather %>%
+  filter(tmax > 20) %>%
+  count(name) %>% 
+  plot_ly(x = ~name, y = ~n, 
+          color = ~name, type = "bar")
+```
 

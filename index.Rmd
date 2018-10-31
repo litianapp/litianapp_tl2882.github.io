@@ -22,4 +22,4 @@ The page giving academic and professional experience.
 
 *[This is the flexdashboard link](plotly.html) *
 
-Three distinct plot types (scatterplots, line plots, box plots) using "NY NOAA" dataset.
+Three distinct plot types (scatterplot, box plot, bar plot) using "NY NOAA" dataset.

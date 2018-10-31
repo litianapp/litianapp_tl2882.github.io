@@ -1,46 +1,55 @@
 ---
-title: "plotly"
+title: "Flexdashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
+library(flexdashboard)
 library(tidyverse)
-library(viridis)
 library(plotly)
-library(rnoaa)
+library(p8105.datasets)
 
-weather = 
-  meteo_pull_monitors(c("USW00094728", "USC00519397", "USS0023B17S"),
-                      var = c("PRCP", "TMIN", "TMAX"), 
-                      date_min = "2016-01-01",
-                      date_max = "2016-12-31") %>%
-  mutate(
-    name = recode(id, USW00094728 = "CentralPark_NY", 
-                      USC00519397 = "Waikiki_HA",
-                      USS0023B17S = "Waterhole_WA"),
-    tmin = tmin / 10,
-    tmax = tmax / 10) %>%
-  select(name, id, everything())
+data(rest_inspec)
 
+rest_inspec %>% 
+  group_by(boro, grade) %>% 
+  summarize(n = n()) %>% 
+  spread(key = grade, value = n)
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Relationship between tmax and tmin
 ```{r scatterplots}
-weather %>%
-  plot_ly(x = ~tmin, y = ~tmax, 
+rest_inspec %>%
+  filter(!is.na(score), !is.na(grade), boro == "Manhattan") %>% 
+  plot_ly(x = ~building, y = ~score, 
           type = "scatter", mode = "markers", 
-          alpha = 0.5, color = ~name)
+          alpha = 0.5, color = ~boro)
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Distribution of scores in different boroughs
 ```{r boxplot}
-weather %>%
-  plot_ly(y = ~prcp, color = ~name, 
+rest_inspec %>%
+  filter(!is.na(score), boro != "Missing") %>% 
+  plot_ly(y = ~score, color = ~boro, 
           type = "box", colors = "Set2")
 ```
 
-```{r barplot}
-weather %>%
-  filter(tmax > 20) %>%
-  count(name) %>% 
-  plot_ly(x = ~name, y = ~n, 
-          color = ~name, type = "bar")
-```
+### Number of A grade pizza restaurants in different boroughs
 
+```{r barplot}
+rest_inspec %>% 
+  filter(str_detect(dba, "[Pp][Ii][Zz][Zz][Aa]")) %>% 
+  group_by(boro, grade) %>% 
+  summarize(n = n()) %>% 
+  spread(key = grade, value = n) %>%
+  plot_ly(x = ~boro, y = ~A, color = ~boro, type = "bar")
+```

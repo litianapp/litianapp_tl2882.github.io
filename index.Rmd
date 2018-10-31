@@ -2,20 +2,24 @@
 title: "Homework 4"
 author: "Tian Li"
 ---
-
+&nbsp;
 
 Welcome to the landing page of the Homework 4！
 
-Here are several links to the information:
+Here are several links to the information:  
+
+&nbsp;
 
 ### Resume
 
-[This is the resume link](resume.html) 
+*[This is the resume link](resume.html)*
 
 The page giving academic and professional experience.
 
+&nbsp;
+
 ### Flexdashboard
 
-[This is the flexdashboard link](plotly.html) 
+*[This is the flexdashboard link](plotly.html) *
 
 Three distinct plot types (scatterplots, line plots, box plots) using "NY NOAA" dataset.

@@ -19,7 +19,7 @@ data(rest_inspec)
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Number of restaurants of each score
+### Number of restaurants of different scores
 ```{r scatterplots}
 rest_inspec %>%
   filter(!is.na(score)) %>% 
@@ -50,3 +50,8 @@ rest_inspec %>%
   spread(key = grade, value = n) %>%
   plot_ly(x = ~boro, y = ~A, color = ~boro, type = "bar")
 ```
+
+```{r knit, eval=FALSE}
+rmarkdown::render("plotly.Rmd", output_format = "flex_dashboard")
+```
+
